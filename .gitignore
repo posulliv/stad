@@ -26,3 +26,9 @@ configure.ac
 libtool
 plugin/
 stamp-h1
+.libs
+common/.dirstamp
+common/.libs
+common/libcommon_la-keywords.lo
+common/libcommon_la-sql_tokenizer.lo
+libcommon.la
