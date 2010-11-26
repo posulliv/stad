@@ -1,0 +1,1 @@
+Plugin for Drizzle that uses the technique of SQL randomization to prevent SQL injection attacks.
