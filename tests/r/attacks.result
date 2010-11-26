@@ -1,0 +1,152 @@
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	 
+create table users (
+accounts varchar(255),
+login varchar(255) not null,
+pass varchar(255) not null,
+pin int,
+primary key(login)
+) engine=InnoDB;
+create table creditcards (
+account_num int primary key,
+card_no int not null
+) engine=InnoDB;
+insert into users values ('lots of stuff', 'padraig', 'sullivan', 1234);
+insert into users values ('more stuff', 'sarah', 'godfrey', 9876);
+insert into users values ('nothing...', 'user', 'pass', 23423423);
+insert into users values ('something I guess', 'bob', 'dylan', 1941);
+insert into users values ('country', 'hayes', 'caryll', 2008);
+insert into users values ('art', 'leonardo', 'da vinci', 1452);
+insert into users values ('beer', 'justin', 'townes earles', 2009);
+insert into creditcards values (1234, 444444);
+insert into creditcards values (4321, 656565);
+insert into creditcards values (5544, 654643);
+insert into creditcards values (4747, 838383);
+select * from users;
+accounts	login	pass	pin
+something i guess	bob	dylan	1941
+country	hayes	caryll	2008
+beer	justin	townes earles	2009
+art	leonardo	da vinci	1452
+lots of stuff	padraig	sullivan	1234
+more stuff	sarah	godfrey	9876
+nothing...	user	pass	23423423
+select login from users;
+login
+bob
+hayes
+justin
+leonardo
+padraig
+sarah
+user
+select login from users where pass = 'godfrey' and pin = 9876;
+login
+sarah
+select accounts from users where login = 'bob' and pass = 'dylan' and pin = 1941;
+accounts
+something i guess
+select * from creditcards;
+account_num	card_no
+1234	444444
+4321	656565
+4747	838383
+5544	654643
+select account_num from creditcards;
+account_num
+1234
+4321
+4747
+5544
+select account_num from creditcards where card_no = 444444;
+account_num
+1234
+select accounts from users where login = '' or 1=1 -- and pass='' and pin=;
+accounts
+something i guess
+country
+beer
+art
+lots of stuff
+more stuff
+nothing...
+set global stad_key = '1234';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	1234
+select1234 accounts from1234 users where1234 login = '' or 1=1 -- and1234 pass='' and1234 pin=;
+1
+1
+set global stad_key = '';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	 
+select accounts from users where login = '' 
+union
+select card_no from creditcards where account_num = 4747 -- and pass = '' and pin=;
+accounts
+838383
+set global stad_key = '1234';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	1234
+select1234 accounts from1234 users where1234 login = '' 
+union
+select card_no from creditcards where account_num = 4747 -- and1234 pass = '' and1234 pin=;
+1
+1
+set global stad_key = '';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	 
+select accounts from users where login = 'bob' and pass = '';
+accounts
+drop table users;
+select * from users;
+Got one of the listed errors
+create table users (
+accounts varchar(255),
+login varchar(255) not null,
+pass varchar(255) not null,
+pin int,
+primary key(login)
+) engine=InnoDB;
+insert into users values ('lots of stuff', 'padraig', 'sullivan', 1234);
+insert into users values ('more stuff', 'sarah', 'godfrey', 9876);
+insert into users values ('nothing...', 'user', 'pass', 23423423);
+insert into users values ('something I guess', 'bob', 'dylan', 1941);
+insert into users values ('country', 'hayes', 'caryll', 2008);
+insert into users values ('art', 'leonardo', 'da vinci', 1452);
+insert into users values ('beer', 'justin', 'townes earles', 2009);
+select * from users;
+accounts	login	pass	pin
+something i guess	bob	dylan	1941
+country	hayes	caryll	2008
+beer	justin	townes earles	2009
+art	leonardo	da vinci	1452
+lots of stuff	padraig	sullivan	1234
+more stuff	sarah	godfrey	9876
+nothing...	user	pass	23423423
+set global stad_key = '1234';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	1234
+select1234 accounts from1234 users where1234 login = 'bob' and1234 pass = '';
+accounts
+drop table users;
+1
+1
+select1234 * from1234 users;
+accounts	login	pass	pin
+something i guess	bob	dylan	1941
+country	hayes	caryll	2008
+beer	justin	townes earles	2009
+art	leonardo	da vinci	1452
+lots of stuff	padraig	sullivan	1234
+more stuff	sarah	godfrey	9876
+nothing...	user	pass	23423423
+set global stad_key = '';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	 

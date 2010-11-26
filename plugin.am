@@ -1,0 +1,32 @@
+
+noinst_HEADERS+= \
+                plugin/stad/common/keywords.hpp \
+                plugin/stad/common/sql_tokenizer.hpp
+
+plugin_stad_libcommon_la_CXXFLAGS = ${AM_CXXFLAGS}
+
+plugin_stad_libcommon_la_SOURCES = \
+                plugin/stad/common/keywords.cpp \
+                plugin/stad/common/sql_tokenizer.cpp
+
+noinst_LTLIBRARIES+= \
+                plugin/stad/libcommon.la
+
+plugin_stad_stadclient_SOURCES = plugin/stad/client.cc client/linebuffer.cc
+plugin_stad_stadclient_LDADD = \
+    ${BOOST_LIBS} \
+    ${READLINE_LIBS} \
+    libdrizzle/libdrizzle.la \
+    $(LIBINTL) \
+    $(LIBZ) \
+    client/libgetpassword.la \
+    plugin/stad/libcommon.la
+
+plugin_stad_common_randomizer_SOURCES = plugin/stad/common/randomizer.cc
+plugin_stad_common_randomizer_LDADD = \
+    ${BOOST_LIBS} \
+    plugin/stad/libcommon.la
+
+bin_PROGRAMS += \
+    plugin/stad/stadclient \
+    plugin/stad/common/randomizer

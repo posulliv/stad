@@ -1,0 +1,193 @@
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	 
+create table t1 (
+id int not null primary key,
+name varchar(20),
+index(name)
+) engine=InnoDB;
+create table t2 (
+id int not null primary key,
+crap varchar(20),
+other_crap varchar(20)
+) engine=InnoDB;
+insert into t1 values (1, 'a1');
+insert into t1 values (2, 'a2');
+insert into t1 values (3, 'a3');
+insert into t1 values (4, 'a4');
+insert into t2 values (1, 'padraig', 'sarah');
+insert into t2 values (2, 'dark', 'wolverine');
+insert into t2 values (3, 'logan', 'weaponx');
+insert into t2 values (4, 'x', '23');
+select * from t1;
+id	name
+1	a1
+2	a2
+3	a3
+4	a4
+select * from t2;
+id	crap	other_crap
+1	padraig	sarah
+2	dark	wolverine
+3	logan	weaponx
+4	x	23
+select id, name from t1;
+id	name
+1	a1
+2	a2
+3	a3
+4	a4
+select id, crap, other_crap from t2;
+id	crap	other_crap
+1	padraig	sarah
+2	dark	wolverine
+3	logan	weaponx
+4	x	23
+select id from t1 where name = 'a2';
+id
+2
+select id from t1 where name = "a3";
+id
+3
+select id from t2 where crap = 'dark' and other_crap = 'wolverine';
+id
+2
+select id from t2 where crap = "logan" and other_crap = "wolverine";
+id
+select1234 id, name from1234 t1;
+Got one of the listed errors
+select1234 id, crap, other_crap from1234 t2;
+Got one of the listed errors
+set global stad_key = '1234';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	1234
+select id, name from t1;
+1
+1
+select id, crap, other_crap from t2;
+1
+1
+select1234 id, name from1234 t1;
+id	name
+1	a1
+2	a2
+3	a3
+4	a4
+select1234 id, crap, other_crap from1234 t2;
+id	crap	other_crap
+1	padraig	sarah
+2	dark	wolverine
+3	logan	weaponx
+4	x	23
+select1234 id from1234 t1 where1234 name = 'a2';
+id
+2
+select1234 id from1234 t1 where1234 name = "a3";
+id
+3
+select1234 id from1234 t2 where1234 crap = 'dark' and1234 other_crap = 'wolverine';
+id
+2
+select1234 id from1234 t2 where1234 crap = "logan" and1234 other_crap = "wolverine";
+id
+set global stad_key = '';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	 
+select id, name from t1;
+id	name
+1	a1
+2	a2
+3	a3
+4	a4
+select id, crap, other_crap from t2;
+id	crap	other_crap
+1	padraig	sarah
+2	dark	wolverine
+3	logan	weaponx
+4	x	23
+select1234 id, name from1234 t1;
+Got one of the listed errors
+select1234 id, crap, other_crap from1234 t2;
+Got one of the listed errors
+set global stad_key = '1256';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	1256
+select id, name from t1;
+1
+1
+select id, crap, other_crap from t2;
+1
+1
+select1234 id, name from1234 t1;
+1
+1
+select1234 id, crap, other_crap from1234 t2;
+1
+1
+select1256 id, name from1256 t1;
+id	name
+1	a1
+2	a2
+3	a3
+4	a4
+select1256 id, crap, other_crap from1256 t2;
+id	crap	other_crap
+1	padraig	sarah
+2	dark	wolverine
+3	logan	weaponx
+4	x	23
+select1256 id from1256 t1 where1256 name = 'a2';
+id
+2
+select1256 id from1256 t1 where1256 name = "a3";
+id
+3
+select1256 id from1256 t2 where1256 crap = 'dark' and1256 other_crap = 'wolverine';
+id
+2
+select1256 id from1256 t2 where1256 crap = "logan" and1256 other_crap = "wolverine";
+id
+select1256 id from1256 t2 where1256 crap = 'logan1256' and1256 other_crap = 'wolverine1256';
+id
+select1256 id from1256 t2 where1256 crap1256 = 'logan1256' and1256 other_crap1256 = 'wolverine1256';
+Got one of the listed errors
+set global stad_key = 'akjfdhdakjfhadksjfasjkdfsajdkfhdsajkfhadsjkfhsjdkfhadskjfjadksf';
+show variables like '%stad_key%';
+Variable_name	Value
+stad_key	akjfdhdakjfhadksjfasjkdfsajdkfhdsajkfhadsjkfhsjdkfhadskjfjadksf
+select id, name from t1;
+1
+1
+select id, crap, other_crap from t2;
+1
+1
+select1234 id, name from1234 t1;
+1
+1
+select1234 id, crap, other_crap from1234 t2;
+1
+1
+select1256 id, name from1256 t1;
+1
+1
+select1256 id, crap, other_crap from1256 t2;
+1
+1
+select1256 id from1256 t1 where1256 name = 'a2';
+1
+1
+select1256 id from1256 t1 where1256 name = "a3";
+1
+1
+select1256 id from1256 t2 where1256 crap = 'dark' and1256 other_crap = 'wolverine';
+1
+1
+select1256 id from1256 t2 where1256 crap = "logan" and1256 other_crap = "wolverine";
+1
+1
+select1256 id from1256 t2 where1256 crap = 'logan1256' and1256 other_crap = 'wolverine1256';
+1
+1

@@ -1,0 +1,150 @@
+
+show variables like '%stad_key%';
+
+create table users (
+  accounts varchar(255),
+  login varchar(255) not null,
+  pass varchar(255) not null,
+  pin int,
+  primary key(login)
+) engine=InnoDB;
+
+create table creditcards (
+  account_num int primary key,
+  card_no int not null
+) engine=InnoDB;
+
+# insert toy data
+insert into users values ('lots of stuff', 'padraig', 'sullivan', 1234);
+insert into users values ('more stuff', 'sarah', 'godfrey', 9876);
+insert into users values ('nothing...', 'user', 'pass', 23423423);
+insert into users values ('something I guess', 'bob', 'dylan', 1941);
+insert into users values ('country', 'hayes', 'caryll', 2008);
+insert into users values ('art', 'leonardo', 'da vinci', 1452);
+insert into users values ('beer', 'justin', 'townes earles', 2009);
+
+insert into creditcards values (1234, 444444);
+insert into creditcards values (4321, 656565);
+insert into creditcards values (5544, 654643);
+insert into creditcards values (4747, 838383);
+
+# just do some simple data selection
+select * from users;
+select login from users;
+select login from users where pass = 'godfrey' and pin = 9876;
+select accounts from users where login = 'bob' and pass = 'dylan' and pin = 1941;
+
+select * from creditcards;
+select account_num from creditcards;
+select account_num from creditcards where card_no = 444444;
+
+# attack type: tautology 
+# the goal of this attack is three-fold
+# 1) bypass authentication
+# 2) identify injectable parameters
+# 3) extract data
+# The general goal of this attack is to inject code 
+# in one or more conditional statements so that they
+# always evaluate to true
+# the consequences of this attack depend on how the 
+# results of the query are used within the application
+# here we will do this attack and prevent it 
+
+# this is an attack and will display all accounts
+select accounts from users where login = '' or 1=1 -- and pass='' and pin=;
+
+# now set key
+set global stad_key = '1234';
+show variables like '%stad_key%';
+
+# the attack would have keywords injected that would not
+# contain the randomization key
+select1234 accounts from1234 users where1234 login = '' or 1=1 -- and1234 pass='' and1234 pin=;
+
+# reset key for next attack type
+set global stad_key = '';
+show variables like '%stad_key%';
+
+
+# attack type: UNION query
+# goal of this attack is
+# 1) bypass authentication
+# 2) extract data
+# In attacks of this type, an attacker attempts to
+# exploit a vulnerable parameter to change the data set
+# returned for a given query
+# with this attack, an attacker can trick the application
+# into returning data from a table different from the one
+# that was intended by the developer
+
+# this attack selects from another table
+select accounts from users where login = '' 
+union
+select card_no from creditcards where account_num = 4747 -- and pass = '' and pin=;
+
+# now set key
+set global stad_key = '1234';
+show variables like '%stad_key%';
+
+# the attack would have keywords injected that would not
+# contain the randomization key
+select1234 accounts from1234 users where1234 login = '' 
+union
+select card_no from creditcards where account_num = 4747 -- and1234 pass = '' and1234 pin=;
+
+# reset key for next attack type
+set global stad_key = '';
+show variables like '%stad_key%';
+
+
+# attack type: piggy-backed queries
+# goal of this attack is
+# 1) extract data
+# 2) add or modify data
+# 3) perform denial of service
+# 4) execute remote commands
+# In this attack type, an attacker tries to inject additional
+# queries into the original query. In this case, attackers are
+# not trying to modify the original query; instead they are
+# trying to include new and distinct queries that "piggy-back"
+# on the original query. Think little-bobby tables...
+
+# this attack drops the users table
+select accounts from users where login = 'bob' and pass = ''; drop table users; -- ' and pin = 1941;
+
+# users table will not exist now so expect an error
+-- error ER_NO_SUCH_TABLE, 1146
+select * from users;
+
+# re-create the table 
+create table users (
+  accounts varchar(255),
+  login varchar(255) not null,
+  pass varchar(255) not null,
+  pin int,
+  primary key(login)
+) engine=InnoDB;
+insert into users values ('lots of stuff', 'padraig', 'sullivan', 1234);
+insert into users values ('more stuff', 'sarah', 'godfrey', 9876);
+insert into users values ('nothing...', 'user', 'pass', 23423423);
+insert into users values ('something I guess', 'bob', 'dylan', 1941);
+insert into users values ('country', 'hayes', 'caryll', 2008);
+insert into users values ('art', 'leonardo', 'da vinci', 1452);
+insert into users values ('beer', 'justin', 'townes earles', 2009);
+
+# query the data 
+select * from users;
+
+# set the key
+set global stad_key = '1234';
+show variables like '%stad_key%';
+
+# try the attack again
+select1234 accounts from1234 users where1234 login = 'bob' and1234 pass = ''; drop table users; -- ' and1234 pin = 1941;
+
+# make sure the table exists with data
+select1234 * from1234 users;
+
+# reset key for next attack type
+set global stad_key = '';
+show variables like '%stad_key%';
