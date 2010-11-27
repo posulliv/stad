@@ -314,7 +314,7 @@ def fix_file_paths(plugin, files):
         file= os.path.join(plugin['rel_path'], file)
         new_files= "%s %s" % (new_files, file)
   else:
-    new_files= " ".join(plugin['sources'].split())
+    new_files= " ".join(files.split())
   if new_files != "":
     return new_files
   return files
@@ -411,6 +411,8 @@ def read_plugin_ini(plugin_dir):
     parser.read(plugin_file)
     plugin=dict(parser.items('plugin'))
     plugin['plugin_dir'] = plugin_dir
+    if plugin['module_name'] == '**OUT-OF-TREE**':
+      plugin['module_name'] = plugin['name']
     if plugin_dir == '.':
       if not plugin.has_key('url'):
         print "External Plugins are required to specifiy a url"
