@@ -10,13 +10,17 @@ libcommon_la_SOURCES = \
                 common/sql_tokenizer.cpp
 
 noinst_LTLIBRARIES+= \
-                libcommon.la
+                libcommon.la \
+                client/libgetpassword.la
+
+client_libgetpassword_la_SOURCES = client/get_password.cc
 
 stadclient_SOURCES = client/client.cc client/linebuffer.cc
 stadclient_LDADD = \
     ${BOOST_LIBS} \
     ${READLINE_LIBS} \
-    libdrizzle/libdrizzle.la \
+    ${DRIZZLE_LIBS} \
+    ${LTLIBDRIZZLE} \
     $(LIBINTL) \
     $(LIBZ) \
     client/libgetpassword.la \

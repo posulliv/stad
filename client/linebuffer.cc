@@ -16,14 +16,13 @@
 /* readline for batch mode */
 
 #include "config.h"
-#include "drizzled/internal/my_sys.h"
 #include "client/linebuffer.h"
 #include <boost/version.hpp>
 
 #include <vector>
+#include <stdio.h>
 
 using namespace std;
-using namespace drizzled;
 
 LineBuffer::LineBuffer(uint32_t my_max_size,FILE *my_file)
   :

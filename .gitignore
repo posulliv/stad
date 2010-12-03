@@ -1,4 +1,5 @@
 .deps/
+config.h.in~
 Makefile
 Makefile.am
 Makefile.in
@@ -34,3 +35,10 @@ libcommon.la
 libstad_plugin.la
 libstad_plugin_la-injection_prevention.lo
 client/.dirstamp
+client/client.o
+client/linebuffer.o
+client/get_password.lo
+client/libgetpassword.la
+common/randomizer
+common/randomizer.o
+stadclient
