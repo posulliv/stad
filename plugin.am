@@ -19,7 +19,6 @@ stadclient_SOURCES = client/client.cc client/linebuffer.cc
 stadclient_LDADD = \
     ${BOOST_LIBS} \
     ${READLINE_LIBS} \
-    ${DRIZZLE_LIBS} \
     ${LTLIBDRIZZLE} \
     $(LIBINTL) \
     $(LIBZ) \
