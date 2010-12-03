@@ -12,7 +12,7 @@ libcommon_la_SOURCES = \
 noinst_LTLIBRARIES+= \
                 libcommon.la
 
-stadclient_SOURCES = client.cc client/linebuffer.cc
+stadclient_SOURCES = client/client.cc client/linebuffer.cc
 stadclient_LDADD = \
     ${BOOST_LIBS} \
     ${READLINE_LIBS} \

@@ -4,7 +4,6 @@ Makefile.am
 Makefile.in
 aclocal.m4
 autom4te.cache/
-client/
 config.h
 config.h.in
 config.log
@@ -32,3 +31,6 @@ common/.libs
 common/libcommon_la-keywords.lo
 common/libcommon_la-sql_tokenizer.lo
 libcommon.la
+libstad_plugin.la
+libstad_plugin_la-injection_prevention.lo
+client/.dirstamp
