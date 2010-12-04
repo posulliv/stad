@@ -1,6 +1,7 @@
 .deps/
 config.h.in~
 Makefile
+Makefile.am
 Makefile.in
 aclocal.m4
 autom4te.cache/
